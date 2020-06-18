@@ -1,0 +1,121 @@
+@font-face {
+    font-family: 'Raleway-Bold'; /*a name to be used later*/
+    src: url('../vendor/raleway/Raleway-Bold.ttf'); /*URL to font*/
+}
+
+@font-face {
+    font-family: 'Raleway-ExtraBold'; /*a name to be used later*/
+    src: url('../vendor/raleway/Raleway-ExtraBold.ttf'); /*URL to font*/
+}
+
+@font-face {
+    font-family: 'Raleway-ExtraLight'; /*a name to be used later*/
+    src: url('../vendor/raleway/Raleway-ExtraLight.ttf'); /*URL to font*/
+}
+
+@font-face {
+    font-family: 'Raleway-Heavy'; /*a name to be used later*/
+    src: url('../vendor/raleway/Raleway-Heavy.ttf'); /*URL to font*/
+}
+
+@font-face {
+    font-family: 'Raleway-Light'; /*a name to be used later*/
+    src: url('../vendor/raleway/Raleway-Light.ttf'); /*URL to font*/
+}
+
+@font-face {
+    font-family: 'Raleway-Medium'; /*a name to be used later*/
+    src: url('../vendor/raleway/Raleway-Medium.ttf'); /*URL to font*/
+}
+
+@font-face {
+    font-family: 'Raleway-Regular'; /*a name to be used later*/
+    src: url('../vendor/raleway/Raleway-Regular.ttf'); /*URL to font*/
+}
+
+@font-face {
+    font-family: 'Raleway-SemiBold'; /*a name to be used later*/
+    src: url('../vendor/raleway/Raleway-SemiBold.ttf'); /*URL to font*/
+}
+
+@font-face {
+    font-family: 'Raleway-Thin'; /*a name to be used later*/
+    src: url('../vendor/raleway/Raleway-Thin.ttf'); /*URL to font*/
+}
+
+.title{
+    font-family: "Raleway-Bold", sans-serif;
+    font-size: 2em;
+}
+
+.subtitle{
+    font-family: "Raleway-Thin", sans-serif;
+    font-size: 1em;
+}
+
+p {
+  font-family: "Raleway-Light", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Raleway-Bold", sans-serif;
+}
+
+.custom_nav{
+    background-color : rgba(120, 161, 187, 1);
+    font-family: Raleway-Medium, sans-serif;
+}
+
+.nav-link {
+    color: white;
+}
+
+.nav-link:hover {
+    color: rgba(255,255,255, 0.8);
+}
+
+.hidden_el{
+    display:none;
+}
+
+body {
+    /*background-color: rgba(224, 226, 228, 1);*/
+    background-color: rgba(205, 220, 230, 1);
+}
+
+.card, .card-body {
+    /*background-color: rgba(245, 248, 250, 1);*/
+    background-color: rgba(241, 245, 248, 1);
+}
+
+
+.links line {
+    stroke: #999;
+    stroke-opacity: 0.6;
+}
+.nodes circle {
+    stroke: #fff;
+    stroke-width: 1.5px;
+}
+text {
+    font-family: sans-serif;
+    font-size: 10px;
+}
+
+.texth5 {
+    font-family: Raleway-Bold, sans-serif;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+    line-height: 1.2;
+    color: inherit;
+    margin-block-start: 1.67em;
+    margin-block-end: 1.67em;
+    margin-inline-start: 10px;
+    margin-inline-end: 0px;
+}
+
+.icon {
+    width: 15px;
+    height: 15px;
+}

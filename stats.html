@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Infovis</title>
+    <link rel="shortcut icon" href="img/favicon.png" type="image/png"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Styles -->
+    <!-- MDB -->
+    <!-- Material Design for Bootstrap fonts and icons -->
+    <!--    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">-->
+    <!-- Bootstrap Material Design -->
+    <link href="vendor/bmd/css/bootstrap-material-design.css" rel="stylesheet">
+    <!-- /MDB -->
+    <!-- Custom styles (optional) -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        .main-row{
+            margin-top: 2em;
+            margin-bottom: 1em;
+        }
+        .line {
+            fill: rgba(53, 144, 243, 0.7);
+            stroke: steelblue;
+            stroke-width: 0.8px;
+        }
+        .bar{
+            fill: rgba(153, 178, 221, 1);
+            stroke: black;
+            stroke-width: 0.3px;
+        }
+
+        .card-stat-bordeaux{
+            border-left: 5px solid rgba(213, 96, 98, 1);
+        }
+        .card-stat-orange{
+            border-left: 5px solid rgba(243, 119, 72, 1);
+        }
+        .card-stat-blue{
+            border-left: 5px solid rgba(53, 144, 243, 1);
+        }
+
+        .card-stat-blue2{
+            border-left: 5px solid rgba(98, 191, 237, 1);
+        }
+        .card-stat-violet {
+            border-left: 5px solid rgba(194, 187, 240, 1);
+        }
+
+        .badge-male {
+            color: rgba(28, 66, 238, 1);
+            background-color: rgba(176, 215, 255, 1);
+        }
+
+        .badge-female{
+            color: rgba(217, 3, 104, 1);
+            background-color: rgba(251, 215, 255, 1);
+        }
+    </style>
+
+</head>
+<body oncontextmenu="return false;">
+
+<!-- Navigation -->
+<ul class="nav custom_nav justify-content-center py-4">
+    <li class="nav-item">
+        <a class="nav-link white-text active" href="graph.html">Visualization</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link white-text active" href="stats.html">Stats</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link white-text" href="about_me.html">About Me</a>
+    </li>
+</ul>
+<!-- /Navigation -->
+
+<!-- Start your project here-->
+
+<!-- Panel -->
+<!--<section class="text-center my-5">-->
+<!--    &lt;!&ndash; Section heading &ndash;&gt;-->
+<!--    <h2 class="h1-responsive my-5">NOME-GRAFO</h2>-->
+<!--    &lt;!&ndash; Section description &ndash;&gt;-->
+<!--</section>-->
+<!-- /Panel -->
+
+<!--Map-->
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <defs>
+        <marker id="arrow" refX="6" refY="6" markerUnits="strokeWidth" markerWidth="12" markerHeight="12" viewBox="0 0 12 12" orient="auto" position="19 19 19">
+            <path d="M2,2 L10,6 L2,10 L6,6 L2,2" style="fill: red;"></path>
+        </marker>
+        <symbol id="arrow-up" viewBox="214.7 -150 182.6 792">
+            <path xmlns="http://www.w3.org/2000/svg" d="M -20,670.71582 C -20,668.85739 329.99229,-29.27271 330.57213,-28.57089 C 332.51762,-26.21611 680.63965,670.88998 679.99913,671.14838 C 679.58076,671.31716 600.70188,637.45746 504.71273,595.90461 L 330.18699,520.35396 L 155.94489,595.89128 C 60.11172,637.43679 -18.680347,671.42858 -19.148608,671.42858 C -19.616868,671.42858 -19.99999,671.10783 -19.99999,670.71582 z " style="fill:darkgrey;stroke:none"/>
+        </symbol>
+        <symbol id="arrow-down" viewBox="214.7 -150 182.6 792">
+            <path xmlns="http://www.w3.org/2000/svg" d="M 680.00001,-27.858649 C 680.00001,-26.000219 330.00773,672.12987 329.42789,671.42805 C 327.4824,669.07328 -20.639627,-28.032809 -19.999107,-28.291219 C -19.580737,-28.459999 59.298143,5.3997002 155.28729,46.952552 L 329.81303,122.50321 L 504.05513,46.965887 C 599.8883,5.4203742 678.68037,-28.571419 679.14863,-28.571419 C 679.61689,-28.571419 680.00001,-28.250669 680.00001,-27.858649 z " style="fill:darkgrey;fill-opacity:1;stroke:none"/>
+        </symbol>
+
+        <svg id="person" viewBox="0 0 512 512"><!-- enable-background="new 0 0 512 512" xml:space="preserve">-->
+            <path d="M256,256c52.805,0,96-43.201,96-96s-43.195-96-96-96s-96,43.201-96,96S203.195,256,256,256z M256,304   c-63.598,0-192,32.402-192,96v48h384v-48C448,336.402,319.598,304,256,304z"/>
+        </svg>
+
+    </defs>
+</svg>
+<div class="container-fluid main">
+
+    <div class="row main-row text-center">
+
+        <div class="col-12">
+            <div class="row">
+                <div class="col-6">
+                    <form>
+                        <div class="form-group">
+                            <br>
+                            <label class="sr-only text-warning" for="status_select">Selected Status</label>
+                            <select class="form-control" id="status_select"></select>
+                        </div>
+                    </form>
+                </div>
+
+
+                <div class="col-2">
+                    <div class="card card-stat-bordeaux">
+                        <div class="card-body">
+                            <h6 class="text-center">Number of Migrants</h6>
+                            <p class="card-text text-center" id="people_in_status">  </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="card card-stat-orange">
+                        <div class="card-body">
+                            <h6 class="text-center">Average Days</h6>
+                            <p class="card-text text-center" id="days_in_status">  </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="card card-stat-violet">
+                        <div class="card-body">
+                            <h6 class="text-center">Gender Percentage</h6>
+                            <p class="card-text text-center" id="gender_details">  </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="row main-row">
+        <div class="col-12">
+            <div class="row">
+
+                <div class="col-6">
+                    <div class="card" id="card_days_in_status_details">
+                        <div class="card-body">
+                            <div id="card_days_in_status_details_header"> </div>
+                            <div class="row" style="margin-top: 1em;">
+                                <div class="col-12" id="card_days_in_status_details_stats"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-10" id="card_days_in_status_details_distribution"></div>
+                                <div class="col-2" id="card_days_in_status_details_graph_controls"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="card" id="card_age_details">
+                        <div class="card-body">
+                            <div id="card_age_details_header"> </div>
+                            <div class="row" style="margin-top: 1em;">
+                                <div class="col-12" id="card_age_details_stats"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-10" id="card_age_details_distribution"></div>
+                                <div class="col-2" id="card_age_details_graph_controls"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--    <div class="row" style="margin-top: 2em;">-->
+    <!--        <div class="card" id="card_days_in_status_details">-->
+    <!--            <div class="card-header" id="card_days_in_status_details_header"> </div>-->
+    <!--            <div class="card-body">-->
+    <!--                <div class="row">-->
+    <!--                    <div class="col-9" id="card_days_in_status_details_distribution"></div>-->
+    <!--                    <div class="col-3" id="card_days_in_status_details_stats"></div>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--    <div class="row" style="margin-top: 2em;">-->
+    <!--        <div class="col-12">-->
+    <!--            <div class="card" id="card_age_details">-->
+    <!--                <div class="card-header" id="card_age_details_header"> </div>-->
+    <!--                <div class="card-body">-->
+    <!--                    <div class="row">-->
+    <!--                        <div class="col-9" id="card_age_details_distribution"></div>-->
+    <!--                        <div class="col-3" id="card_age_details_stats"></div>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--    <div class="row" style="margin-top: 2em;">-->
+    <!--        <div class="col-12">-->
+    <!--            <div class="card" id="card_gender_details">-->
+    <!--                <div class="card-header" id="card_gender_details_header"> </div>-->
+    <!--                <div class="card-body">-->
+    <!--                    <div class="row">-->
+    <!--                        <div class="col-9" id="card_gender_details_distribution"></div>-->
+    <!--                        <div class="col-3" id="card_gender_details_stats"></div>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+
+</div>
+<!--/Map-->
+<!--<div class="font-weight-bold"-->
+<!-- /Start your project here-->
+
+<!-- Javascript dependencies -->
+<!-- jQuery -->
+<script type="text/javascript" src="vendor/jquery/jquery-3.3.1.min.js"></script>
+<!-- /jQuery -->
+<!-- popperjs -->
+<script type="text/javascript" src="vendor/popperjs/js/popper-1.12.6.js"></script>
+<!-- /popperjs -->
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="vendor/bmd/js/bootstrap-material-design.js"></script>
+<!-- /MDB core JavaScript -->
+<!-- Optional js sources-->
+
+<!-- /Optional js sources-->
+<!-- d3.js-->
+<script type="text/javascript" src="vendor/d3/d3.js"></script>
+<!-- /d3.js-->
+<script src="vendor/d3/d3-axis.v1.min.js"></script>
+<script type="text/javascript" src="vendor/d3/d3-scale-chromatic.v1.min.js"></script>
+<script type="text/javascript" src="vendor/d3/d3dag.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/stats.js"></script>
+
+<!-- /Javascript dependencies -->
+
+
+</body>
+
+</html>
